@@ -17,6 +17,11 @@ export class InMemoryUsersRepository implements UsersRepository {
     this.users.push(user)
   }
 
+  async save(user: User): Promise<void> {
+    const itemIndex = this.users.findIndex(({ id }) => id === user.id)
+    this.users[itemIndex] = user
+  }
+
   async findById(userId: string) {
     const user = this.users.find(({ id }) => id.toString() === userId)
 

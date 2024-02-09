@@ -32,7 +32,11 @@ describe('Create user', () => {
 
     expect(result.isLeft()).toBe(false)
     expect(usersRepository.users).toHaveLength(1)
-    expect(usersRepository.users[0].email).toBe(data.email)
+    expect(usersRepository.users[0]).toMatchObject({
+      name: 'John Doe',
+      email: 'user@test.com',
+      address: 'Test Avenue, 234, Tampa, FL, US',
+    })
   })
 
   it('should not be able to create a user with a duplicated email', async () => {

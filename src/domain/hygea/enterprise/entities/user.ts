@@ -15,16 +15,32 @@ export class User extends Entity<UserProps> {
     return this.props.name
   }
 
+  set name(name: string) {
+    this.props.name = name
+  }
+
   get email() {
     return this.props.email
+  }
+
+  set email(email: string) {
+    this.props.email = email
   }
 
   get address() {
     return this.props.address
   }
 
+  set address(address: string) {
+    this.props.address = address
+  }
+
   get birthDate() {
     return this.props.birthDate
+  }
+
+  set birthDate(birthDate: Date) {
+    this.props.birthDate = birthDate
   }
 
   get createdAt() {
