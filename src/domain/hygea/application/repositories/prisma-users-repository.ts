@@ -7,8 +7,8 @@ import { prisma } from '@/lib/prisma'
 export class PrismaUsersRepository implements UsersRepository {
   async findMany({ page }: PaginationParams) {
     const usersOnDatabase = await prisma.user.findMany({
-      skip: page - 1,
-      take: page * 20,
+      skip: (page - 1) * 20,
+      take: 20,
       orderBy: {
         createdAt: 'desc',
       },
