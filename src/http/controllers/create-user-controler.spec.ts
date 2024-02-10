@@ -1,7 +1,7 @@
 import request from 'supertest'
 import { app } from '@/app'
 
-describe('[e2e] Create User Controller', () => {
+describe('(e2e) Create User', () => {
   beforeAll(async () => {
     await app.ready()
   })

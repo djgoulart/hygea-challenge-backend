@@ -1,9 +1,9 @@
 import { FastifyRequest, FastifyReply } from 'fastify'
 import { z } from 'zod'
+import { isDate } from 'date-fns'
 
 import { PrismaUsersRepository } from '@/domain/hygea/application/repositories/prisma-users-repository'
 import { CreateUserUseCase } from '@/domain/hygea/application/use-cases/create-user'
-import { isDate } from 'date-fns'
 import { EmailAlreadyExistsError } from '@/domain/hygea/application/use-cases/errors/email-already-exists-error'
 
 export async function createUser(request: FastifyRequest, reply: FastifyReply) {
