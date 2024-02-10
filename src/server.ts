@@ -1,10 +1,9 @@
 import fastify from 'fastify'
 import { usersRoutes } from './routes/users'
-import { error } from 'console'
 import { ZodError } from 'zod'
 import { env } from './env'
 
-const app = fastify()
+export const app = fastify()
 
 app.register(usersRoutes)
 

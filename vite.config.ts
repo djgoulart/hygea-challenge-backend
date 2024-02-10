@@ -10,6 +10,7 @@ export default defineConfig({
     coverage: {
       exclude: ['**/data/pg/**'],
     },
+    environmentMatchGlobs: [['src/http/controllers/**', 'prisma']],
   },
   plugins: [
     tsConfigPaths(),

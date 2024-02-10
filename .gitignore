@@ -4,3 +4,9 @@ node_modules
 
 #Vitest
 /coverage
+
+#Build
+/build
+
+#Docker
+/data
