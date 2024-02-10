@@ -1,7 +1,7 @@
 import { UsersRepository } from '../repositories/users-repository'
 import { Either, left, right } from '@/core/either'
 import { ResourceNotFoundError } from './errors/resource-not-found-error'
-import { InvalidDataError } from './errors/invalid-data-error'
+import { EmailAlreadyExistsError } from './errors/email-already-exists-error'
 
 export type EditUserInput = {
   name: string
@@ -11,7 +11,7 @@ export type EditUserInput = {
 }
 
 export type EditUserUseCaseResponse = Either<
-  ResourceNotFoundError,
+  ResourceNotFoundError | EmailAlreadyExistsError,
   Record<string, never>
 >
 
@@ -33,7 +33,7 @@ export class EditUserUseCase {
     )
 
     if (ensureNewEmailIsUnique && user.email !== userData.email) {
-      return left(new InvalidDataError('The e-mail provided is already in use'))
+      return left(new EmailAlreadyExistsError())
     }
 
     user.name = userData.name

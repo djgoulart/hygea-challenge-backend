@@ -1,5 +1,5 @@
 import request from 'supertest'
-import { app } from '@/server'
+import { app } from '@/app'
 
 describe('[e2e] Create User Controller', () => {
   beforeAll(async () => {
@@ -13,7 +13,7 @@ describe('[e2e] Create User Controller', () => {
   it('(POST) /users', async () => {
     const response = await request(app.server).post('/users').send({
       name: 'John Doe',
-      email: 'user5@test.com',
+      email: 'user@test.com',
       address: 'Test Avenue, 234, Tampa, FL, US',
       birthDate: '1988-01-20',
     })

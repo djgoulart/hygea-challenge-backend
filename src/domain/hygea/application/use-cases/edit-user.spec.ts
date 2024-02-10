@@ -3,7 +3,7 @@ import { makeUser } from 'test/factories/make-user'
 import { UniqueEntityId } from '@/core/entities/unique-entity-id'
 import { ResourceNotFoundError } from './errors/resource-not-found-error'
 import { EditUserUseCase } from './edit-user'
-import { InvalidDataError } from './errors/invalid-data-error'
+import { EmailAlreadyExistsError } from './errors/email-already-exists-error'
 
 let usersRepository: InMemoryUsersRepository
 let sut: EditUserUseCase
@@ -72,7 +72,7 @@ describe('Edit user', () => {
     expect(result.isLeft()).toBe(true)
 
     if (result.isLeft()) {
-      expect(result.value).toBeInstanceOf(InvalidDataError)
+      expect(result.value).toBeInstanceOf(EmailAlreadyExistsError)
     }
 
     expect(result.isRight()).toBe(false)
