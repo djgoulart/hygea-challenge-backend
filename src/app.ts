@@ -5,7 +5,6 @@ import { env } from './env'
 import { usersRoutes } from './routes/users'
 import { UseCaseError } from './core/error/use-case-error'
 
-
 export const app = fastify()
 
 app.register(usersRoutes)
@@ -17,10 +16,8 @@ app.setErrorHandler((error, _, reply) => {
       .send({ message: 'Validation error.', issues: error.format() })
   }
 
-  if(error instanceof UseCaseError) {
-    return reply
-    .status(400)
-    .send({ message: error.message })
+  if (error instanceof UseCaseError) {
+    return reply.status(400).send({ message: error.message })
   }
 
   if (env.NODE_ENV !== 'production') {

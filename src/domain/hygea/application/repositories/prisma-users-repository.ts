@@ -38,7 +38,10 @@ export class PrismaUsersRepository implements UsersRepository {
         id: user.id.toString(),
       },
       data: {
-        ...user,
+        name: user.name,
+        email: user.email,
+        address: user.address,
+        birthDate: user.birthDate,
       },
     })
   }
