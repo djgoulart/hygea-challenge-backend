@@ -28,4 +28,4 @@ jobs:
 
       - run: npm run test:e2e
         env:
-          DATABASE_URL: "postgresql://${DB_USER}:${DB_PASSWORD}@localhost:5432/${DB_NAME}?schema=public"
+          DATABASE_URL: "postgresql://docker:docker@localhost:5432/hygea?schema=public"
