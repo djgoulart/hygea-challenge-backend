@@ -1,6 +1,7 @@
 import { Entity } from '@/core/entities/entity'
 import { UniqueEntityId } from '@/core/entities/unique-entity-id'
 import { Optional } from '@/core/types/optional'
+import { UserOutputDTO } from '../../application/dtos/user-dto'
 
 export interface UserProps {
   name: string
@@ -47,7 +48,10 @@ export class User extends Entity<UserProps> {
     return this.props.createdAt
   }
 
-  static create(props: Optional<UserProps, 'createdAt'>, id?: UniqueEntityId) {
+  static create(
+    props: Optional<UserProps, 'createdAt'>,
+    id?: UniqueEntityId,
+  ): UserOutputDTO {
     const user = new User(
       {
         ...props,
@@ -56,6 +60,13 @@ export class User extends Entity<UserProps> {
       id,
     )
 
-    return user
+    return {
+      id: user.id.toString(),
+      name: user.props.name,
+      email: user.props.email,
+      address: user.props.address,
+      birthDate: user.props.birthDate,
+      createdAt: user.props.createdAt,
+    }
   }
 }

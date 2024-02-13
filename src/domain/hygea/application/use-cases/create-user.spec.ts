@@ -1,8 +1,6 @@
 import { InMemoryUsersRepository } from 'test/repositories/in-memory-users-repository'
 import { CreateUserUseCase } from './create-user'
-import { User } from '@/domain/hygea/enterprise/entities/user'
 import { makeUser } from 'test/factories/make-user'
-import { InvalidDataError } from './errors/invalid-data-error'
 import { EmailAlreadyExistsError } from './errors/email-already-exists-error'
 
 let usersRepository: InMemoryUsersRepository
@@ -28,7 +26,11 @@ describe('Create user', () => {
 
     if (result.isRight()) {
       expect(result.value.user).toBeTruthy()
-      expect(result.value.user).toBeInstanceOf(User)
+      expect(result.value.user).toMatchObject({
+        name: 'John Doe',
+        email: 'user@test.com',
+        address: 'Test Avenue, 234, Tampa, FL, US',
+      })
     }
 
     expect(result.isLeft()).toBe(false)
