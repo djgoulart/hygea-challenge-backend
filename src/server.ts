@@ -3,9 +3,10 @@ import { app } from './app'
 
 app
   .listen({
-    host: '0.0.0.0',
+    host: env.HOST,
     port: env.PORT,
   })
   .then(() => {
+    console.log(env.NODE_ENV)
     console.log('HTTP Server Running!')
   })

@@ -1,12 +1,12 @@
-import { User } from '@/domain/hygea/enterprise/entities/user'
 import { UsersRepository } from '../repositories/users-repository'
 import { Either, right } from '@/core/either'
 import { PaginationParams } from '@/core/repositories/pagination-params'
+import { UserDTO } from '../dtos/user-dto'
 
-export type CreateUserUseCaseResponse = Either<
+export type ListUsersUseCaseResponse = Either<
   null,
   {
-    users: User[]
+    users: UserDTO[]
   }
 >
 
@@ -15,8 +15,9 @@ export class FetchUsersUseCase {
 
   async execute({
     page,
-  }: PaginationParams): Promise<CreateUserUseCaseResponse> {
-    const users = await this.usersRepository.findMany({ page })
+    query,
+  }: PaginationParams): Promise<ListUsersUseCaseResponse> {
+    const users = await this.usersRepository.findMany({ page, query })
 
     return right({ users })
   }

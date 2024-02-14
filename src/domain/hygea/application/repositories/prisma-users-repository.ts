@@ -6,8 +6,24 @@ import { prisma } from '@/lib/prisma'
 import { UserDTO } from '../dtos/user-dto'
 
 export class PrismaUsersRepository implements UsersRepository {
-  async findMany({ page }: PaginationParams) {
+  async findMany({ page, query }: PaginationParams) {
     const usersOnDatabase = await prisma.user.findMany({
+      where: query
+        ? {
+            OR: [
+              {
+                name: {
+                  contains: query,
+                },
+              },
+              {
+                email: {
+                  contains: query,
+                },
+              },
+            ],
+          }
+        : {},
       skip: (page - 1) * 20,
       take: 20,
       orderBy: {
