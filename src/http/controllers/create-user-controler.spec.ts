@@ -10,9 +10,9 @@ describe('(e2e) Create User', () => {
     await app.close()
   })
 
-  it('(POST) /users', async () => {
+  it('(POST) /user/create', async () => {
     const response = await request(app.server)
-      .post('/users')
+      .post('/user/create')
       .send({
         data: {
           name: 'John Doe',

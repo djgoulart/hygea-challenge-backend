@@ -18,32 +18,32 @@ describe('(e2e) Fetch Users', () => {
     await app.close()
   })
 
-  it('(GET) /users should be able to list without pagination params', async () => {
-    const response = await request(app.server).get('/users').send()
+  it('(GET) /user/list should be able to list without pagination params', async () => {
+    const response = await request(app.server).get('/user/list').send()
 
     expect(response.statusCode).toBe(200)
     expect(response.body.users).toBeTruthy()
     expect(response.body.users).toHaveLength(20)
   })
 
-  it('(GET) /users should be able to list with pagination params', async () => {
-    const response = await request(app.server).get('/users?page=1').send()
+  it('(GET) /user/list should be able to list with pagination params', async () => {
+    const response = await request(app.server).get('/user/list?page=1').send()
 
     expect(response.statusCode).toBe(200)
     expect(response.body.users).toBeTruthy()
     expect(response.body.users).toHaveLength(20)
   })
 
-  it('(GET) /users should be able to paginate', async () => {
-    const response = await request(app.server).get('/users?page=2').send()
+  it('(GET) /user/list should be able to paginate', async () => {
+    const response = await request(app.server).get('/user/list?page=2').send()
 
     expect(response.statusCode).toBe(200)
     expect(response.body.users).toBeTruthy()
     expect(response.body.users).toHaveLength(1)
   })
 
-  it('(GET) /users should be able to list when no register is found', async () => {
-    const response = await request(app.server).get('/users?page=3').send()
+  it('(GET) /user/list should be able to list when no register is found', async () => {
+    const response = await request(app.server).get('/user/list?page=3').send()
 
     expect(response.statusCode).toBe(200)
     expect(response.body.users).toBeTruthy()

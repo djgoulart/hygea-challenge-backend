@@ -12,14 +12,14 @@ describe('(e2e) Edit User', () => {
     await app.close()
   })
 
-  it('(PUT) /user/:userId', async () => {
+  it('(PUT) /user/:userId/edit', async () => {
     const repository = new PrismaUsersRepository()
     await repository.create(makeUser({ email: 'user@edit.com' }))
     await repository.create(makeUser({ email: 'user2@edit.com' }))
     const user = await repository.findByEmail('user@edit.com')
 
     const response = await request(app.server)
-      .put(`/user/${user?.id.toString()}`)
+      .put(`/user/${user?.id.toString()}/edit`)
       .send({
         name: 'Name edited',
         email: 'email@edited.com',
