@@ -21,10 +21,12 @@ describe('(e2e) Edit User', () => {
     const response = await request(app.server)
       .put(`/user/${user?.id.toString()}/edit`)
       .send({
-        name: 'Name edited',
-        email: 'email@edited.com',
-        address: 'An awesome place, 100, NY, USA',
-        birthDate: user?.birthDate,
+        data: {
+          name: 'Name edited',
+          email: 'email@edited.com',
+          address: 'An awesome place, 100, NY, USA',
+          birthDate: user?.birthDate,
+        },
       })
 
     const userEdited = await repository.findById(user!.id.toString())

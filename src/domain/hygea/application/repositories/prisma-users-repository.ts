@@ -35,10 +35,10 @@ export class PrismaUsersRepository implements UsersRepository {
     return result
   }
 
-  async save(user: User): Promise<void> {
+  async save(user: UserDTO): Promise<void> {
     await prisma.user.update({
       where: {
-        id: user.id.toString(),
+        id: user.id,
       },
       data: {
         name: user.name,
