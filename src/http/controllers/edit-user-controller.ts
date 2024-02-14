@@ -2,7 +2,6 @@ import { FastifyRequest, FastifyReply } from 'fastify'
 import { z } from 'zod'
 
 import { PrismaUsersRepository } from '@/domain/hygea/application/repositories/prisma-users-repository'
-import { DeleteUserUseCase } from '@/domain/hygea/application/use-cases/delete-user'
 import { ResourceNotFoundError } from '@/domain/hygea/application/use-cases/errors/resource-not-found-error'
 import { isDate } from 'date-fns'
 import { EditUserUseCase } from '@/domain/hygea/application/use-cases/edit-user'
@@ -14,34 +13,34 @@ export async function editUser(request: FastifyRequest, reply: FastifyReply) {
   })
 
   const editUserBodySchema = z.object({
-    name: z.string(),
-    email: z.string().email(),
-    address: z.string(),
-    birthDate: z
-      .string()
-      .refine(
-        (value) => {
-          return isDate(new Date(value))
-        },
-        {
-          message: 'invalid date',
-        },
-      )
-      .transform((value) => new Date(value)),
+    data: z.object({
+      name: z.string(),
+      email: z.string().email(),
+      address: z.string(),
+      birthDate: z
+        .string()
+        .refine(
+          (value) => {
+            return isDate(new Date(value))
+          },
+          {
+            message: 'invalid date',
+          },
+        )
+        .transform((value) => new Date(value)),
+    }),
   })
 
   const { userId } = editUserParamSchema.parse(request.params)
-  const { name, email, address, birthDate } = editUserBodySchema.parse(
-    request.body,
-  )
+  const { data } = editUserBodySchema.parse(request.body)
 
   const repository = new PrismaUsersRepository()
   const useCase = new EditUserUseCase(repository)
   const response = await useCase.execute(userId, {
-    name,
-    email,
-    address,
-    birthDate,
+    name: data.name,
+    email: data.email,
+    address: data.address,
+    birthDate: data.birthDate,
   })
 
   if (response.isLeft() && response.value instanceof ResourceNotFoundError) {
