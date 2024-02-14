@@ -1,6 +1,6 @@
 import { UniqueEntityId } from '@/core/entities/unique-entity-id'
 
-export type UserOutputDTO = {
+export type UserDTO = {
   id: string
   name: string
   email: string

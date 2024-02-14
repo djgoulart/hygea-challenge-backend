@@ -1,12 +1,12 @@
 import { PaginationParams } from '@/core/repositories/pagination-params'
 import { User } from '@/domain/hygea/enterprise/entities/user'
-import { UserOutputDTO } from '../dtos/user-dto'
+import { UserInputDTO, UserDTO } from '../dtos/user-dto'
 
 export interface UsersRepository {
-  create(user: User): Promise<void>
+  create(user: User): Promise<UserDTO>
   save(user: User): Promise<void>
-  findMany(params: PaginationParams): Promise<UserOutputDTO[]>
-  findById(userId: string): Promise<UserOutputDTO | null>
-  findByEmail(userEmail: string): Promise<UserOutputDTO | null>
+  findMany(params: PaginationParams): Promise<UserDTO[]>
+  findById(userId: string): Promise<UserDTO | null>
+  findByEmail(userEmail: string): Promise<UserDTO | null>
   delete(user: User): Promise<void>
 }

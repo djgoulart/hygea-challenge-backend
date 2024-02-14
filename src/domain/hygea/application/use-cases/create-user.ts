@@ -2,6 +2,7 @@ import { User } from '@/domain/hygea/enterprise/entities/user'
 import { UsersRepository } from '../repositories/users-repository'
 import { Either, left, right } from '@/core/either'
 import { EmailAlreadyExistsError } from './errors/email-already-exists-error'
+import { UserDTO } from '../dtos/user-dto'
 
 export type CreateUserInput = {
   name: string
@@ -13,7 +14,7 @@ export type CreateUserInput = {
 export type CreateUserUseCaseResponse = Either<
   EmailAlreadyExistsError,
   {
-    user: User
+    user: UserDTO
   }
 >
 

@@ -3,6 +3,7 @@ import { PaginationParams } from '@/core/repositories/pagination-params'
 import { UsersRepository } from '@/domain/hygea/application/repositories/users-repository'
 import { User } from '@/domain/hygea/enterprise/entities/user'
 import { prisma } from '@/lib/prisma'
+import { UserDTO } from '../dtos/user-dto'
 
 export class PrismaUsersRepository implements UsersRepository {
   async findMany({ page }: PaginationParams) {
@@ -21,8 +22,8 @@ export class PrismaUsersRepository implements UsersRepository {
     return users
   }
 
-  async create(user: User): Promise<void> {
-    await prisma.user.create({
+  async create(user: User): Promise<UserDTO> {
+    const result = await prisma.user.create({
       data: {
         name: user.name,
         email: user.email,
@@ -30,6 +31,8 @@ export class PrismaUsersRepository implements UsersRepository {
         birthDate: user.birthDate,
       },
     })
+
+    return result
   }
 
   async save(user: User): Promise<void> {
