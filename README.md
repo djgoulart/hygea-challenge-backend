@@ -5,7 +5,10 @@ O desafio consiste em desenvolver um CRUD para uma entidade já existente chamad
 
 Um ponto EXTRA será a inclusão de uma funcionalidade de busca com autocompletar na lista de usuários.
 
-## Entregáveis do Backend
+## Entregáveis do Desafio
+- [Aplicativo Mobile](https://github.com/djgoulart/hygea-challenge-app)
+- [Aplicação Backend](https://github.com/djgoulart/test-hygea-backend)
+- 
 #### Implementar os endpoints listados abaixo:
 - GET - user/list
 - GET - user/:id
