@@ -8,7 +8,7 @@ Um ponto EXTRA será a inclusão de uma funcionalidade de busca com autocompleta
 ## Entregáveis do Desafio
 - [Aplicativo Mobile](https://github.com/djgoulart/hygea-challenge-app)
 - [Aplicação Backend](https://github.com/djgoulart/test-hygea-backend)
-- 
+  
 #### Implementar os endpoints listados abaixo:
 - GET - user/list
 - GET - user/:id
