@@ -23,8 +23,6 @@ Para a solução deste desafio foi adotada uma arquitetura simples em termos de 
 - Prisma
 - PostgreSQL
 
-## Estrutura de Pastas
-
 ## Requisitos de sistema
 
 * NodeJS 18+
